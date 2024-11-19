@@ -9,12 +9,12 @@ export default [
     { files: ['**/*.{js,mjs,cjs,ts}'] },
     { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
     { languageOptions: { globals: globals.node } },
+    { ignores: ['dist', 'node_modules', 'test'] },
     {
         rules: {
             'no-unused-vars': 'error',
             'no-undef': 'error',
         },
-        ignores: ['dist', 'node_modules'],
     },
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
