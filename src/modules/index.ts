@@ -1,1 +1,1 @@
-export * from './handler/Handler'
+export * from './handler'
