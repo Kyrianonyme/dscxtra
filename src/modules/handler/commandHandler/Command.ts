@@ -3,7 +3,7 @@ import type { CommandOptions } from './types'
 
 export class Command {
     public data: SlashCommandBuilder
-    public run: () => void
+    public run: (...args: any) => void
 
     constructor(options: CommandOptions) {
         if (!options) {

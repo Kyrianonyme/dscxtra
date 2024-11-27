@@ -1,5 +1,6 @@
 import { Client } from 'discord.js'
 import type { HandlerOptions } from './types'
+import { initCommands } from './commandHandler/init'
 
 export class Handler {
     private data: HandlerOptions
@@ -15,9 +16,7 @@ export class Handler {
         }
 
         if (options.commandsMode && !options.commandsPath) {
-            throw new Error(
-                '"commandsMode" is not usable without "commandsPath"'
-            )
+            throw new Error('"commandsMode" is not usable without "commandsPath"')
         } else if (!options.commandsMode && options.commandsPath) {
             options.commandsMode = 'normal'
         }
@@ -27,9 +26,7 @@ export class Handler {
             options.eventsMode = 'normal'
         }
         if (options.interactionsMode && !options.interactionsPath) {
-            throw new Error(
-                '"interactionsMode" is not usable without "interactionsPath"'
-            )
+            throw new Error('"interactionsMode" is not usable without "interactionsPath"')
         } else if (!options.interactionsMode && options.interactionsPath) {
             options.interactionsMode = 'normal'
         }
@@ -51,5 +48,9 @@ export class Handler {
         }
     }
 
-    private init() {}
+    private init() {
+        this.data.client.on('ready', () => {
+            initCommands(this.data)
+        })
+    }
 }
