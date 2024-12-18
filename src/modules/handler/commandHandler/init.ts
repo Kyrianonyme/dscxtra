@@ -15,7 +15,7 @@ export function initCommands(handler: HandlerOptions) {
 
             for (const file of commandFiles) {
                 const filePath = path.join(handler.commandsPath as string, file)
-                const command: Command = require(filePath)
+                const command: Command = require(filePath).command
                 commands.set(command.data.name, command)
                 commandsBody.push(command.data.toJSON())
             }
@@ -32,7 +32,7 @@ export function initCommands(handler: HandlerOptions) {
 
                 for (const file of commandFiles) {
                     const filePath = path.join(commandsPath, file)
-                    const command: Command = require(filePath)
+                    const command: Command = require(filePath).command
                     commands.set(command.data.name, command)
                     commandsBody.push(command.data.toJSON())
                 }

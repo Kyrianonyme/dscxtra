@@ -1,6 +1,7 @@
 import { Client } from 'discord.js'
 import type { HandlerOptions } from './types'
 import { initCommands } from './commandHandler/init'
+import { initEvents } from './eventHandler/init'
 
 export class Handler {
     private data: HandlerOptions
@@ -52,5 +53,6 @@ export class Handler {
         this.data.client.on('ready', () => {
             initCommands(this.data)
         })
+        initEvents(this.data)
     }
 }
