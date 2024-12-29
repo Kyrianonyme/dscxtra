@@ -9,12 +9,12 @@ export function initCommands(handler: HandlerOptions) {
     const commandsBody: object[] = []
     const ext = /\.(js|mjs|cjs|ts)$/i
 
-    switch (handler.commandsMode) {
+    switch (handler.slashCommandsMode) {
         case 'normal': {
-            const commandFiles = readdirSync(handler.commandsPath!).filter(file => ext.test(file))
+            const commandFiles = readdirSync(handler.slashCommandsPath!).filter(file => ext.test(file))
 
             for (const file of commandFiles) {
-                const filePath = path.join(handler.commandsPath as string, file)
+                const filePath = path.join(handler.slashCommandsPath as string, file)
                 const command: Command = require(filePath).command
                 commands.set(command.data.name, command)
                 commandsBody.push(command.data.toJSON())
@@ -24,14 +24,14 @@ export function initCommands(handler: HandlerOptions) {
         }
 
         case 'subfolders': {
-            const folders = readdirSync(handler.commandsPath!)
+            const folders = readdirSync(handler.slashCommandsPath!)
 
             for (const folder of folders) {
-                const commandsPath = path.join(handler.commandsPath as string, folder)
-                const commandFiles = readdirSync(commandsPath)
+                const slashCommandsPath = path.join(handler.slashCommandsPath as string, folder)
+                const commandFiles = readdirSync(slashCommandsPath)
 
                 for (const file of commandFiles) {
-                    const filePath = path.join(commandsPath, file)
+                    const filePath = path.join(slashCommandsPath, file)
                     const command: Command = require(filePath).command
                     commands.set(command.data.name, command)
                     commandsBody.push(command.data.toJSON())

@@ -3,10 +3,10 @@ import { PathLike } from 'fs'
 
 export interface HandlerOptions {
     client: Client
-    commandsPath?: PathLike
+    slashCommandsPath?: PathLike
     eventsPath?: PathLike
     interactionsPath?: PathLike
-    commandsMode?: 'normal' | 'subfolders'
+    slashCommandsMode?: 'normal' | 'subfolders'
     eventsMode?: 'normal' | 'subfolders' | 'foldernames'
     interactionsMode?: 'normal' | 'subfolders'
 }

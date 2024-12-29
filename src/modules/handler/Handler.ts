@@ -4,7 +4,7 @@ import { initCommands } from './commandHandler/init'
 import { initEvents } from './eventHandler/init'
 
 export class Handler {
-    private data: HandlerOptions
+    public data: HandlerOptions
 
     constructor(options: HandlerOptions) {
         if (!options) {
@@ -16,10 +16,10 @@ export class Handler {
             throw new Error('"client" is not a Discord Client')
         }
 
-        if (options.commandsMode && !options.commandsPath) {
-            throw new Error('"commandsMode" is not usable without "commandsPath"')
-        } else if (!options.commandsMode && options.commandsPath) {
-            options.commandsMode = 'normal'
+        if (options.slashCommandsMode && !options.slashCommandsPath) {
+            throw new Error('"slashCommandsMode" is not usable without "slashCommandsPath"')
+        } else if (!options.slashCommandsMode && options.slashCommandsPath) {
+            options.slashCommandsMode = 'normal'
         }
         if (options.eventsMode && !options.eventsPath) {
             throw new Error('"eventsMode" is not usable without "eventsPath"')
@@ -35,7 +35,7 @@ export class Handler {
         const modeOptions = ['normal', 'subfolders']
         const eventModeOptions = [...modeOptions, 'foldernames']
 
-        this.validate(options.commandsMode, modeOptions)
+        this.validate(options.slashCommandsMode, modeOptions)
         this.validate(options.eventsMode, eventModeOptions)
         this.validate(options.interactionsMode, modeOptions)
 
