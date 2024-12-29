@@ -1,3 +1,3 @@
 export * from './Handler'
-export * from './commandHandler/Command'
+export * from './slashCommandHandler/SlashCommand'
 export * from './eventHandler/Event'

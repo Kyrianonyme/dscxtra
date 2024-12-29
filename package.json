@@ -18,6 +18,9 @@
     ],
     "author": "Kyrianonyme",
     "license": "MIT",
+    "repository": {
+        "url": "https://github.com/Kyrianonyme/dscxtra"
+    },
     "devDependencies": {
         "@eslint/js": "9.14.0",
         "@types/node": "^22.9.0",

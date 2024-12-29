@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js'
 import type { CommandOptions } from './types'
 
-export class Command {
+export class SlashCommand {
     public data: SlashCommandBuilder
     public run: (...args: any) => void
 

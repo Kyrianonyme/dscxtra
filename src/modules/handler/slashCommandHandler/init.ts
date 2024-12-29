@@ -1,11 +1,11 @@
 import { readdirSync } from 'fs'
 import type { HandlerOptions } from '../types'
 import { ChatInputCommandInteraction, Collection, ContextMenuCommandInteraction, REST, Routes } from 'discord.js'
-import { Command } from './Command'
+import { SlashCommand } from './SlashCommand'
 import path from 'path'
 
-export function initCommands(handler: HandlerOptions) {
-    const commands: Collection<string, Command> = new Collection()
+export function initSlashCommands(handler: HandlerOptions) {
+    const commands: Collection<string, SlashCommand> = new Collection()
     const commandsBody: object[] = []
     const ext = /\.(js|mjs|cjs|ts)$/i
 
@@ -15,7 +15,7 @@ export function initCommands(handler: HandlerOptions) {
 
             for (const file of commandFiles) {
                 const filePath = path.join(handler.slashCommandsPath as string, file)
-                const command: Command = require(filePath).command
+                const command: SlashCommand = require(filePath).command
                 commands.set(command.data.name, command)
                 commandsBody.push(command.data.toJSON())
             }
@@ -32,7 +32,7 @@ export function initCommands(handler: HandlerOptions) {
 
                 for (const file of commandFiles) {
                     const filePath = path.join(slashCommandsPath, file)
-                    const command: Command = require(filePath).command
+                    const command: SlashCommand = require(filePath).command
                     commands.set(command.data.name, command)
                     commandsBody.push(command.data.toJSON())
                 }

@@ -1,6 +1,6 @@
 import { Client } from 'discord.js'
 import type { HandlerOptions } from './types'
-import { initCommands } from './commandHandler/init'
+import { initSlashCommands } from './slashCommandHandler/init'
 import { initEvents } from './eventHandler/init'
 
 export class Handler {
@@ -26,18 +26,12 @@ export class Handler {
         } else if (!options.eventsMode && options.eventsPath) {
             options.eventsMode = 'normal'
         }
-        if (options.interactionsMode && !options.interactionsPath) {
-            throw new Error('"interactionsMode" is not usable without "interactionsPath"')
-        } else if (!options.interactionsMode && options.interactionsPath) {
-            options.interactionsMode = 'normal'
-        }
 
         const modeOptions = ['normal', 'subfolders']
         const eventModeOptions = [...modeOptions, 'foldernames']
 
         this.validate(options.slashCommandsMode, modeOptions)
         this.validate(options.eventsMode, eventModeOptions)
-        this.validate(options.interactionsMode, modeOptions)
 
         this.data = options
         this.init()
@@ -51,7 +45,7 @@ export class Handler {
 
     private init() {
         this.data.client.on('ready', () => {
-            initCommands(this.data)
+            initSlashCommands(this.data)
         })
         initEvents(this.data)
     }
