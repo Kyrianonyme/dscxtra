@@ -3,9 +3,9 @@ import { readdirSync } from 'fs';
 import { HandlerOptions } from '../types';
 import path from 'path';
 
-export let Handler: HandlerOptions
+export let handlerData: HandlerOptions
 export function initEvents(handler: HandlerOptions) {
-    Handler = handler
+    handlerData = handler
 
     const ext = /\.(js|mjs|cjs|ts)$/i
 

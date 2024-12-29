@@ -1,4 +1,4 @@
-import { Handler } from './init'
+import { handlerData } from './init'
 import { EventOptions } from './types'
 
 export class Event {
@@ -13,9 +13,9 @@ export class Event {
             throw new Error('"run" is not defined')
         }
 
-        if (Handler.eventsMode !== 'foldernames' && !options.name) {
+        if (handlerData.eventsMode !== 'foldernames' && !options.name) {
             throw new Error('"name" is not defined')
-        } else if (Handler.eventsMode === 'foldernames' && options.name) {
+        } else if (handlerData.eventsMode === 'foldernames' && options.name) {
             throw new Error('"name" is defined but event mode is "foldernames"')
         }
 
